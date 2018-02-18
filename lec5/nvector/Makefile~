@@ -1,0 +1,17 @@
+CFLAGS = -Wall
+LIBS = -lm
+
+out.txt: nvec
+	./nvec > out.txt
+	
+nvec: main.o nvector.o
+	cc main.o nvector.o -o nvec
+	
+nvec.o: main.c nvector.c
+	cc $(CFLAGS) main.c nvector.c -o nvec.o -lm
+	
+.PHONEY: clean
+clean:
+	rm -f nvec.o nvec
+
+	
